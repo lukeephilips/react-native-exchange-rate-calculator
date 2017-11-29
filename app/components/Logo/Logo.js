@@ -1,23 +1,21 @@
-import React, {Component} from 'react';
-import { View, Image, ImageBackground, Text, Keyboard, Animated, Platform, StyleSheet } from 'react-native';
-import styles from './styles'
+import React, { Component } from 'react';
+import { View, Text, Keyboard, Animated, Platform, StyleSheet } from 'react-native';
+import styles from './styles';
 
 const ANIMATION_DURATION = 250;
 
-class Logo extends React.Component {
-  constructor(props){
+class Logo extends Component {
+  constructor(props) {
     super(props);
     this.containerImageWidth = new Animated.Value(styles.$largeContainerSize);
     this.imageWidth = new Animated.Value(styles.$largeImageSize);
-
   }
   componentDidMount() {
-    let showListener = `keyboardDidShow`
-    let hideListener = `keyboardDidHide`
+    let showListener = 'keyboardDidShow';
+    let hideListener = 'keyboardDidHide';
     if (Platform.OS === 'ios') {
-      console.log("ios listener");
-      showListener = `keyboardWillShow`
-      let hideListener = `keyboardDidHide`
+      showListener = 'keyboardWillShow';
+      hideListener = 'keyboardWillHide';
     }
 
     this.keyboardDidShowListener = Keyboard.addListener(
@@ -43,7 +41,7 @@ class Logo extends React.Component {
       Animated.timing(this.imageWidth, {
         toValue: styles.$smallImageSize,
         duration: ANIMATION_DURATION,
-      })
+      }),
     ]).start();
   };
 
@@ -56,20 +54,24 @@ class Logo extends React.Component {
       Animated.timing(this.imageWidth, {
         toValue: styles.$largeImageSize,
         duration: ANIMATION_DURATION,
-      })
+      }),
     ]).start();
   }
 
   render() {
     const containerImageStyle = [
       styles.container,
-      {width: this.containerImageWidth,
-      height: this.containerImageWidth}
+      {
+        width: this.containerImageWidth,
+        height: this.containerImageWidth,
+      },
     ];
     const imageStyle = [
       styles.image,
-      {width: this.imageWidth,
-      height: this.imageWidth},
+      {
+        width: this.imageWidth,
+        height: this.imageWidth,
+      },
     ];
 
     return (
@@ -87,11 +89,12 @@ class Logo extends React.Component {
           />
         </Animated.View>
         <Text
-          style={styles.text} >Currency Converter
+          style={styles.text}
+        >Currency Converter
         </Text>
       </View>
-    )
+    );
   }
-};
+}
 
 export default Logo;

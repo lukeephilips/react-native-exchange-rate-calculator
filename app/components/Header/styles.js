@@ -3,16 +3,16 @@ import { StatusBar } from 'react-native';
 
 const styles = EStyleSheet.create({
   container: {
-    position: "absolute",
+    position: 'absolute',
     left: 0,
     right: 0,
-    top:0,
+    top: 0,
     '@media ios': {
       paddingTop: 20,
     },
     '@media android': {
       paddingTop: StatusBar.currentHeight,
-    }
+    },
   },
   button: {
     alignSelf: 'flex-end',
@@ -21,7 +21,7 @@ const styles = EStyleSheet.create({
   },
   icon: {
     width: 18,
-  }
+  },
 });
 
 export default styles;

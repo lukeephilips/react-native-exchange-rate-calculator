@@ -1,45 +1,43 @@
 import React from 'react';
-import { View, StatusBar, KeyboardAvoidingView } from 'react-native';
+import { StatusBar, KeyboardAvoidingView } from 'react-native';
 
-import {Container} from './../components/Container';
-import {Logo} from './../components/Logo';
-import {InputWithButton} from './../components/TextInput';
-import {ClearButton} from './../components/Button';
-import {LastConverted} from './../components/Text';
-import {Header} from './../components/Header';
-
-
+import { Container } from './../components/Container';
+import { Logo } from './../components/Logo';
+import { InputWithButton } from './../components/TextInput';
+import { ClearButton } from './../components/Button';
+import { LastConverted } from './../components/Text';
+import { Header } from './../components/Header';
 
 
-const TEMP_BASE_CURRENCY = "USD";
-const TEMP_QUOTE_CURRENCY = "GBP";
-const TEMP_BASE_PRICE = "100";
-const TEMP_QUOTE_PRICE = "81.02";
-const TEMP_CONVERSION_RATE = .8102;
+const TEMP_BASE_CURRENCY = 'USD';
+const TEMP_QUOTE_CURRENCY = 'GBP';
+const TEMP_BASE_PRICE = '100';
+const TEMP_QUOTE_PRICE = '81.02';
+const TEMP_CONVERSION_RATE = 0.8102;
 const TEMP_CONVERSION_DATE = new Date();
 
 
 class Home extends React.Component {
   handlePressBaseCurrency = () => {
-    alert("ding dong");
+    console.log('currency dong');
   };
   handlePressQuoteCurrency = () => {
-    console.log("quote dong");
+    console.log('quote dong');
   };
   handleTextChange = (text) => {
     console.log('change text', text);
   }
   handleSwapCurrency = (text) => {
-    console.log('press swap currency');
+    console.log('press swap currency', text);
   }
-  handleSettingsPress = (text) => {
+  handleSettingsPress = () => {
     console.log('press settings');
   }
 
   render() {
-    return(
+    return (
       <Container>
-        <StatusBar backgroundColor="red" translucent={true} barStyle="default"/>
+        <StatusBar backgroundColor="red" translucent barStyle="default" />
         <Header
           onPress={this.handleSettingsPress}
         />
@@ -49,7 +47,7 @@ class Home extends React.Component {
             buttonText={TEMP_BASE_CURRENCY}
             onPress={this.handlePressBaseCurrency}
             defaultValue={TEMP_BASE_PRICE}
-            keyboardType='numeric'
+            keyboardType="numeric"
             onChangeText={this.handleTextChange}
           />
           <InputWithButton
@@ -67,8 +65,8 @@ class Home extends React.Component {
           <ClearButton text="Reverse Currencies" onPress={this.handleSwapCurrency} />
         </KeyboardAvoidingView>
       </Container>
-    )
+    );
   }
-};
+}
 
 export default Home;

@@ -2,12 +2,12 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 const styles = EStyleSheet.create({
   container: {
-    alignItems: "center",
+    alignItems: 'center',
 
   },
   wrapper: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
 
   },
   image: {
@@ -16,9 +16,9 @@ const styles = EStyleSheet.create({
 
   },
   text: {
-    color: "$white",
+    color: '$white',
     fontSize: 14,
-    fontWeight: "300",
+    fontWeight: '300',
     paddingVertical: 20,
 
   },

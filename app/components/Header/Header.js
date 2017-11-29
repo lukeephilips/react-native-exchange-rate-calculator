@@ -8,7 +8,7 @@ const Header = ({ onPress }) => (
     <TouchableOpacity
       style={styles.button}
       onPress={onPress}
-      >
+    >
       <Image
         style={styles.icon}
         source={require('./images/gear.png')}
@@ -16,9 +16,9 @@ const Header = ({ onPress }) => (
       />
     </TouchableOpacity>
   </View>
-)
+);
 
 Header.propTypes = {
   onPress: PropTypes.func,
-}
+};
 export default Header;

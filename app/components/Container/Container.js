@@ -5,12 +5,13 @@ import styles from './styles';
 
 const Container = ({ children }) => (
   <TouchableWithoutFeedback
-    onPress={ () => Keyboard.dismiss() } >
+    onPress={() => Keyboard.dismiss()}
+  >
     <View style={styles.container}>
       {children}
     </View>
   </TouchableWithoutFeedback>
-)
+);
 Container.propTypes = {
   children: PropTypes.array,
 };
