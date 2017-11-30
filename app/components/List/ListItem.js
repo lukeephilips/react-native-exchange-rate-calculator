@@ -5,13 +5,22 @@ import { View, Text, TouchableHighlight } from 'react-native';
 
 import Icon from './Icon';
 
-const ListItem = ({ text, onPress, selected = false, checkmark = true, visible = true }) => (
+const ListItem = ({
+  text, onPress,
+  selected = false,
+  checkmark = true,
+  visible = true,
+  customIcon = null,
+  iconBackground
+}) => (
   <TouchableHighlight onPress={onPress} underlayColor={styles.underlayColor}>
     <View style={styles.row}>
       <Text style={styles.text}>{text}</Text>
       {selected ? <Icon
         checkmark={checkmark}
+        iconBackground={iconBackground}
         visible={visible} /> : <Icon />}
+        {customIcon}
     </View>
   </TouchableHighlight>
 );
@@ -22,6 +31,8 @@ ListItem.propTypes ={
   selected: PropTypes.bool,
   checkmark: PropTypes.bool,
   visible: PropTypes.bool,
+  customIcon: PropTypes.element,
+  iconBackground: PropTypes.string,
 
 }
 
