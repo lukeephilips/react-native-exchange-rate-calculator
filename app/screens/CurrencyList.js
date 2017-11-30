@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Text, FlatList, View, StatusBar } from 'react-native';
+import { FlatList, View, StatusBar } from 'react-native';
 import currencies from '../data/currencies';
 
 import { ListItem, Separator } from './../components/List';
@@ -29,11 +29,11 @@ class CurrencyList extends Component {
               onPress={this.handlePress}
             />
           )}
-          keyExtractor={(item) => item}
+          keyExtractor={item => item}
           ItemSeparatorComponent={Separator}
         />
       </View>
-    )
+    );
   }
 }
 

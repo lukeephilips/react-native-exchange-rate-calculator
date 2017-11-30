@@ -1,6 +1,4 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
-import StyleSheet from 'react-native';
-
 
 const styles = EStyleSheet.create({
   $underlayColor: '$border',
@@ -37,7 +35,7 @@ const styles = EStyleSheet.create({
   },
   checkmark: {
     width: 18,
-  }
+  },
 });
 
 export default styles;

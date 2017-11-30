@@ -20,13 +20,13 @@ const TEMP_CONVERSION_DATE = new Date();
 
 class Home extends React.Component {
   static propTypes = {
-    navigation: PropTypes.object
+    navigation: PropTypes.object,
   }
   handlePressBaseCurrency = () => {
-    this.props.navigation.navigate('CurrencyList', {title: 'Base Currency'});
+    this.props.navigation.navigate('CurrencyList', { title: 'Base Currency' });
   };
   handlePressQuoteCurrency = () => {
-    this.props.navigation.navigate('CurrencyList', {title: 'Quote Currency'});
+    this.props.navigation.navigate('CurrencyList', { title: 'Quote Currency' });
   };
   handleTextChange = (text) => {
     console.log('change text', text);
@@ -35,7 +35,7 @@ class Home extends React.Component {
     console.log('press swap currency', text);
   }
   handleSettingsPress = () => {
-    this.props.navigation.navigate('Options', {title: 'Options'});
+    this.props.navigation.navigate('Options', { title: 'Options' });
   }
 
   render() {

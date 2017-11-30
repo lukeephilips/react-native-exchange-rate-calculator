@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './styles';
 import { View, Text, TouchableHighlight } from 'react-native';
-
+import styles from './styles';
 import Icon from './Icon';
 
 const ListItem = ({
@@ -11,7 +10,7 @@ const ListItem = ({
   checkmark = true,
   visible = true,
   customIcon = null,
-  iconBackground
+  iconBackground,
 }) => (
   <TouchableHighlight onPress={onPress} underlayColor={styles.underlayColor}>
     <View style={styles.row}>
@@ -19,13 +18,14 @@ const ListItem = ({
       {selected ? <Icon
         checkmark={checkmark}
         iconBackground={iconBackground}
-        visible={visible} /> : <Icon />}
-        {customIcon}
+        visible={visible}
+      /> : <Icon />}
+      {customIcon}
     </View>
   </TouchableHighlight>
 );
 
-ListItem.propTypes ={
+ListItem.propTypes = {
   text: PropTypes.string,
   onPress: PropTypes.func,
   selected: PropTypes.bool,
@@ -34,6 +34,6 @@ ListItem.propTypes ={
   customIcon: PropTypes.element,
   iconBackground: PropTypes.string,
 
-}
+};
 
 export default ListItem;
