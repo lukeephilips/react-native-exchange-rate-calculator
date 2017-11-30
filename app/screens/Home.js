@@ -37,7 +37,7 @@ class Home extends React.Component {
   render() {
     return (
       <Container>
-        <StatusBar backgroundColor="red" translucent barStyle="default" />
+        <StatusBar translucent barStyle="default" />
         <Header
           onPress={this.handleSettingsPress}
         />
