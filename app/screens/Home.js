@@ -13,16 +13,6 @@ import { swapCurrency, changeCurrencyAmount } from './../actions/currencies';
 
 
 class Home extends React.Component {
-  static propTypes = {
-    navigation: PropTypes.object,
-    dispatch: PropTypes.func,
-    baseCurrency: PropTypes.string,
-    quoteCurrency: PropTypes.string,
-    amount: PropTypes.number,
-    conversionRate: PropTypes.number,
-    isFetching: PropTypes.bool,
-    LastConvertedDate: PropTypes.object
-  }
   handlePressBaseCurrency = () => {
     this.props.navigation.navigate('CurrencyList', { title: 'Base Currency', type: 'base' });
   };
@@ -80,13 +70,24 @@ class Home extends React.Component {
   }
 }
 
+Home.propTypes = {
+  navigation: PropTypes.object,
+  dispatch: PropTypes.func,
+  baseCurrency: PropTypes.string,
+  quoteCurrency: PropTypes.string,
+  amount: PropTypes.number,
+  conversionRate: PropTypes.number,
+  isFetching: PropTypes.bool,
+  LastConvertedDate: PropTypes.object
+}
+
 const mapStateToProps = (state) => {
   const baseCurrency = state.currencies.baseCurrency;
   const quoteCurrency = state.currencies.quoteCurrency;
   const conversionSelector = state.currencies.conversions[baseCurrency] || {};
   const rates = conversionSelector.rates || {};
   const conversionRate = rates[quoteCurrency] || 0;
-  console.log(conversionSelector.date);
+  
   return {
     baseCurrency,
     quoteCurrency,

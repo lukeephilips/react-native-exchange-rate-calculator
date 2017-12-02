@@ -8,13 +8,6 @@ import { ListItem, Separator } from './../components/List';
 import { changeBaseCurrency, changeQuoteCurrency } from './../actions/currencies';
 
 class CurrencyList extends Component {
-  static propTypes = {
-    navigation: PropTypes.object,
-    dispatch: PropTypes.func,
-    baseCurrency:PropTypes.string,
-    quoteCurrency:PropTypes.string,
-
-  }
   handlePress = (currency) => {
     const { type } = this.props.navigation.state.params;
     if (type == 'base') {
@@ -26,9 +19,9 @@ class CurrencyList extends Component {
   };
 
   render() {
-    let currentCurrency = state.currencies.baseCurrency;
+    let currentCurrency = this.props.baseCurrency;
     if (this.props.navigation.state.params == 'quote') {
-      currentCurrency = state.currencies.quoteCurrency;
+      currentCurrency = this.props.quoteCurrency;
     }
 
     return (
@@ -41,6 +34,7 @@ class CurrencyList extends Component {
               text={item}
               selected={item === currentCurrency}
               onPress={() => this.handlePress(item)}
+              // iconBackground={this.props.primaryColor}
             />
           )}
           keyExtractor={item => item}
@@ -49,10 +43,24 @@ class CurrencyList extends Component {
       </View>
     );
   }
+};
+
+CurrencyList.propTypes = {
+  navigation: PropTypes.object,
+  dispatch: PropTypes.func,
+  baseCurrency:PropTypes.string,
+  quoteCurrency:PropTypes.string,
+  primaryColor: PropTypes.string,
+
 }
-const mapStateToProps = state => ({
-  baseCurrency: state.currencies.baseCurrency,
-  currentCurrency: state.currencies.currentCurrency,
-});
+
+const mapStateToProps = (state) => {
+  return {
+    baseCurrency: state.currencies.baseCurrency,
+    currentCurrency: state.currencies.currentCurrency,
+    // primaryColor: state.themes.primaryColor
+
+  };
+};
 
 export default connect(mapStateToProps)(CurrencyList);
