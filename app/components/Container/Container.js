@@ -7,19 +7,19 @@ const Container = ({ children, backgroundColor }) => {
   const containerStyles = [styles.container];
   if (backgroundColor) {
     containerStyles.push({
-      backgroundColor
-    })
+      backgroundColor,
+    });
   }
 
   return (
     <TouchableWithoutFeedback
       onPress={() => Keyboard.dismiss()}
-      >
-        <View style={containerStyles}>
-          {children}
-        </View>
-      </TouchableWithoutFeedback>
-  )
+    >
+      <View style={containerStyles}>
+        {children}
+      </View>
+    </TouchableWithoutFeedback>
+  );
 };
 
 Container.propTypes = {

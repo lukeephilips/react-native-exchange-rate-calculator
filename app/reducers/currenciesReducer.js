@@ -55,16 +55,16 @@ const initialState = {
 
 const setConversions = (state, action) => {
   let conversion = {
-      isFetching: true,
-      date: '',
-      rates: {},
+    isFetching: true,
+    date: '',
+    rates: {},
   };
   if (state.conversions[action.currency]) {
     conversion = state.conversions[action.currency];
   }
   return {
     ...state.conversions, [action.currency]: conversion,
-  }
+  };
 };
 
 const currenciesReducer = (state = initialState, action) => {
@@ -72,7 +72,7 @@ const currenciesReducer = (state = initialState, action) => {
     case CHANGE_CURRENCY_AMOUNT:
       return {
         ...state,
-        amount: action.amount || 0
+        amount: action.amount || 0,
       };
     case SWAP_CURRENCY:
       return {
@@ -86,12 +86,12 @@ const currenciesReducer = (state = initialState, action) => {
         baseCurrency: action.currency,
         conversions: setConversions(state, action),
       };
-      case CHANGE_QUOTE_CURRENCY:
-        return {
-          ...state,
-          quoteCurrency: action.currency,
-          conversions: setConversions(state, action),
-        };
+    case CHANGE_QUOTE_CURRENCY:
+      return {
+        ...state,
+        quoteCurrency: action.currency,
+        conversions: setConversions(state, action),
+      };
     default:
       return state;
   }

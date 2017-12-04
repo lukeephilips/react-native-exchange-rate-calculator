@@ -7,8 +7,6 @@ import { connect } from 'react-redux';
 import { ListItem, Separator } from './../components/List';
 import { changeTheme } from './../actions/themes';
 
-import { swapCurrency } from './../actions/currencies';
-
 
 const styles = EStyleSheet.create({
   $blue: '$primaryBlue',
@@ -56,7 +54,6 @@ class Themes extends Component {
           iconBackground={styles.$green}
 
         />
-
         <Separator />
         <ListItem
           onPress={() => this.handleThemePress(styles.$purple)}
@@ -75,12 +72,10 @@ Themes.propTypes = {
   navigation: PropTypes.object,
   dispatch: PropTypes.func,
   primaryColor: PropTypes.string,
-}
+};
 
-const mapStateToProps = state => {
-  return{
-    primaryColor: state.themes.primaryColor,
-  }
-}
+const mapStateToProps = state => ({
+  primaryColor: state.themes.primaryColor,
+});
 
 export default connect(mapStateToProps)(Themes);

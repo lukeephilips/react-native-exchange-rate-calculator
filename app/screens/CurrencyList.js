@@ -10,17 +10,17 @@ import { changeBaseCurrency, changeQuoteCurrency } from './../actions/currencies
 class CurrencyList extends Component {
   handlePress = (currency) => {
     const { type } = this.props.navigation.state.params;
-    if (type == 'base') {
-      this.props.dispatch(changeBaseCurrency(currency))
-    } else if (type == 'quote') {
-      this.props.dispatch(changeQuoteCurrency(currency))
+    if (type === 'base') {
+      this.props.dispatch(changeBaseCurrency(currency));
+    } else if (type === 'quote') {
+      this.props.dispatch(changeQuoteCurrency(currency));
     }
     this.props.navigation.goBack(null);
   };
 
   render() {
     let currentCurrency = this.props.baseCurrency;
-    if (this.props.navigation.state.params.type == 'quote') {
+    if (this.props.navigation.state.params.type === 'quote') {
       currentCurrency = this.props.quoteCurrency;
     }
 
@@ -43,25 +43,23 @@ class CurrencyList extends Component {
       </View>
     );
   }
-};
+}
 
 CurrencyList.propTypes = {
   navigation: PropTypes.object,
   dispatch: PropTypes.func,
-  baseCurrency:PropTypes.string,
-  quoteCurrency:PropTypes.string,
+  baseCurrency: PropTypes.string,
+  quoteCurrency: PropTypes.string,
   primaryColor: PropTypes.string,
 
-}
-
-const mapStateToProps = (state) => {
-  return {
-    baseCurrency: state.currencies.baseCurrency,
-    quoteCurrency: state.currencies.quoteCurrency,
-    currentCurrency: state.currencies.currentCurrency,
-    primaryColor: state.themes.primaryColor
-
-  };
 };
+
+const mapStateToProps = state => ({
+  baseCurrency: state.currencies.baseCurrency,
+  quoteCurrency: state.currencies.quoteCurrency,
+  currentCurrency: state.currencies.currentCurrency,
+  primaryColor: state.themes.primaryColor,
+
+});
 
 export default connect(mapStateToProps)(CurrencyList);

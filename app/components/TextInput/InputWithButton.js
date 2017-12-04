@@ -5,7 +5,9 @@ import color from 'color';
 import styles from './styles';
 
 const InputWithButton = (props) => {
-  const { onPress, buttonText, editable = true, textColor } = props;
+  const {
+    onPress, buttonText, editable = true, textColor,
+  } = props;
   const containerStyles = [styles.container];
   if (!editable) {
     containerStyles.push(styles.containerDisabled);
@@ -16,8 +18,8 @@ const InputWithButton = (props) => {
 
   if (textColor) {
     buttonTextStyles.push({
-      color: textColor
-    })
+      color: textColor,
+    });
   }
   return (
     <View

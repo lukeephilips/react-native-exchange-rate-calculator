@@ -22,7 +22,7 @@ class Home extends React.Component {
   handleTextChange = (amount) => {
     this.props.dispatch(changeCurrencyAmount(amount));
   }
-  handleSwapCurrency = (text) => {
+  handleSwapCurrency = () => {
     this.props.dispatch(swapCurrency());
   }
   handleSettingsPress = () => {
@@ -33,7 +33,7 @@ class Home extends React.Component {
     let quotePrice = (this.props.amount * this.props.conversionRate).toFixed(2);
 
     if (this.props.isFetching) {
-      quotePrice = '...'
+      quotePrice = '...';
     }
 
     return (
@@ -86,11 +86,10 @@ Home.propTypes = {
   isFetching: PropTypes.bool,
   LastConvertedDate: PropTypes.object,
   primaryColor: PropTypes.string,
-}
+};
 
 const mapStateToProps = (state) => {
-  const baseCurrency = state.currencies.baseCurrency;
-  const quoteCurrency = state.currencies.quoteCurrency;
+  const { baseCurrency, quoteCurrency } = state.currencies;
   const conversionSelector = state.currencies.conversions[baseCurrency] || {};
   const rates = conversionSelector.rates || {};
   const conversionRate = rates[quoteCurrency] || 0;
