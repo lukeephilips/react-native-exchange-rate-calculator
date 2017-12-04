@@ -72,6 +72,7 @@ class Logo extends Component {
         width: this.imageWidth,
         height: this.imageWidth,
       },
+      this.props.tintColor ? { tintColor: this.props.tintColor } : null
     ];
 
     return (

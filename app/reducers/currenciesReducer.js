@@ -67,7 +67,7 @@ const setConversions = (state, action) => {
   }
 };
 
-const reducer = (state = initialState, action) => {
+const currenciesReducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_CURRENCY_AMOUNT:
       return {
@@ -97,4 +97,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default currenciesReducer;

@@ -20,7 +20,7 @@ class CurrencyList extends Component {
 
   render() {
     let currentCurrency = this.props.baseCurrency;
-    if (this.props.navigation.state.params == 'quote') {
+    if (this.props.navigation.state.params.type == 'quote') {
       currentCurrency = this.props.quoteCurrency;
     }
 
@@ -34,7 +34,7 @@ class CurrencyList extends Component {
               text={item}
               selected={item === currentCurrency}
               onPress={() => this.handlePress(item)}
-              // iconBackground={this.props.primaryColor}
+              iconBackground={this.props.primaryColor}
             />
           )}
           keyExtractor={item => item}
@@ -57,8 +57,9 @@ CurrencyList.propTypes = {
 const mapStateToProps = (state) => {
   return {
     baseCurrency: state.currencies.baseCurrency,
+    quoteCurrency: state.currencies.quoteCurrency,
     currentCurrency: state.currencies.currentCurrency,
-    // primaryColor: state.themes.primaryColor
+    primaryColor: state.themes.primaryColor
 
   };
 };

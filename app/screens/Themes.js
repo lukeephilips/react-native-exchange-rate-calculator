@@ -2,8 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, StatusBar } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { connect } from 'react-redux';
 
 import { ListItem, Separator } from './../components/List';
+import { changeTheme } from './../actions/themes';
+
+import { swapCurrency } from './../actions/currencies';
+
 
 const styles = EStyleSheet.create({
   $blue: '$primaryBlue',
@@ -13,14 +18,16 @@ const styles = EStyleSheet.create({
 });
 
 class Themes extends Component {
-  static propTypes = {
-    navigation: PropTypes.object,
-  }
-
   handleThemePress = (color) => {
-    this.props.navigation.goBack(null);
+    this.props.dispatch(changeTheme(color));
+    this.props.navigation.navigate('Home');
   }
   render() {
+    let selectedColor = styles.$blue;
+    if (this.props.primaryColor) {
+      selectedColor = this.props.primaryColor;
+    }
+
     return (
       <ScrollView>
         <StatusBar barStyle="default" translucent={false} />
@@ -28,7 +35,7 @@ class Themes extends Component {
           onPress={() => this.handleThemePress(styles.$blue)}
           text="Blue"
           selected
-          checkmark={false}
+          checkmark={selectedColor === styles.$blue}
           iconBackground={styles.$blue}
         />
         <Separator />
@@ -36,7 +43,7 @@ class Themes extends Component {
           onPress={() => this.handleThemePress(styles.$orange)}
           text="Orange"
           selected
-          checkmark={false}
+          checkmark={selectedColor === styles.$orange}
           iconBackground={styles.$orange}
 
         />
@@ -45,7 +52,7 @@ class Themes extends Component {
           onPress={() => this.handleThemePress(styles.$green)}
           text="Green"
           selected
-          checkmark={false}
+          checkmark={selectedColor === styles.$green}
           iconBackground={styles.$green}
 
         />
@@ -55,9 +62,8 @@ class Themes extends Component {
           onPress={() => this.handleThemePress(styles.$purple)}
           text="Purple"
           selected
-          checkmark={false}
+          checkmark={selectedColor === styles.$purple}
           iconBackground={styles.$purple}
-
         />
         <Separator />
       </ScrollView>
@@ -65,4 +71,16 @@ class Themes extends Component {
   }
 }
 
-export default Themes;
+Themes.propTypes = {
+  navigation: PropTypes.object,
+  dispatch: PropTypes.func,
+  primaryColor: PropTypes.string,
+}
+
+const mapStateToProps = state => {
+  return{
+    primaryColor: state.themes.primaryColor,
+  }
+}
+
+export default connect(mapStateToProps)(Themes);

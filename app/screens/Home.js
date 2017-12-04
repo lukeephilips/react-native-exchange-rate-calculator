@@ -37,25 +37,31 @@ class Home extends React.Component {
     }
 
     return (
-      <Container>
+      <Container
+        backgroundColor={this.props.primaryColor}
+      >
         <StatusBar translucent barStyle="default" />
         <Header
           onPress={this.handleSettingsPress}
         />
         <KeyboardAvoidingView behavior="padding">
-          <Logo />
+          <Logo
+            tintColor={this.props.primaryColor}
+          />
           <InputWithButton
             buttonText={this.props.baseCurrency}
             onPress={this.handlePressBaseCurrency}
             defaultValue={this.props.amount.toString()}
             keyboardType="numeric"
             onChangeText={this.handleTextChange}
+            textColor={this.props.primaryColor}
           />
           <InputWithButton
             buttonText={this.props.quoteCurrency}
             onPress={this.handlePressQuoteCurrency}
             editable={false}
             defaultValue={quotePrice}
+            textColor={this.props.primaryColor}
           />
           <LastConverted
             base={this.props.baseCurrency}
@@ -78,7 +84,8 @@ Home.propTypes = {
   amount: PropTypes.number,
   conversionRate: PropTypes.number,
   isFetching: PropTypes.bool,
-  LastConvertedDate: PropTypes.object
+  LastConvertedDate: PropTypes.object,
+  primaryColor: PropTypes.string,
 }
 
 const mapStateToProps = (state) => {
@@ -87,7 +94,7 @@ const mapStateToProps = (state) => {
   const conversionSelector = state.currencies.conversions[baseCurrency] || {};
   const rates = conversionSelector.rates || {};
   const conversionRate = rates[quoteCurrency] || 0;
-  
+
   return {
     baseCurrency,
     quoteCurrency,
@@ -95,6 +102,7 @@ const mapStateToProps = (state) => {
     conversionRate,
     isFetching: conversionSelector.isFetching,
     LastConvertedDate: conversionSelector.date ? new Date(conversionSelector.date) : new Date(),
+    primaryColor: state.themes.primaryColor,
   };
 };
 export default connect(mapStateToProps)(Home);
